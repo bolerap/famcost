@@ -15,3 +15,4 @@ This sample aim to practice while I'm learning Go, It use built-in Go's packages
 # TODOs
 - Add simple loggin.
 - Add simple Rest api.
+- Add test case.
