@@ -11,9 +11,10 @@ This sample aim to practice while I'm learning Go, It use built-ins Go's package
 - Run local `go run *.go`
 
 # Screen shots
-![Creating](create.png?raw=true "create")
-![Creating](Listing.png?raw=true "create")
+![Creating](create.png "create")
+![Creating](Listing.png "create")
 # TODOs
 - Add simple loggin.
 - Add simple Rest api.
 - Add test case.
+
