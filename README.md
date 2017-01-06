@@ -10,7 +10,7 @@ This sample aim to practice while I'm learning Go, It use built-ins Go's package
 - Clone and change to `famcost` folder ren run `go get` to install dependencies.
 - Run local `go run *.go`
 
-# Demo
+# Screen shots
 ![Creating](create.png?raw=true "create")
 ![Creating](Listing.png?raw=true "create")
 # TODOs
