@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <title>Listing</title>
+    <style>
+        #add-icon:hover {
+            font-weight: bold;
+            opacity: 0.4;
+        }
+    </style>
+</head>
+<body>
+<div class="w3-row-padding">
+    <div class="w3-card-2 w3-margin-top">
+        <header class="w3-container w3-center w3-teal">
+            <div class="w3-row">
+                <div class="w3-half"><h3 class="w3-right">Listing Cost</h3></div>
+                <div class="w3-half">
+                    <a href="#" onclick="document.getElementById('create-form').style.display='block'">
+                        <i id="add-icon" class="icon ion-ios-plus-outline w3-xxlarge w3-right"></i>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <table class="w3-table w3-centered w3-border w3-bordered w3-hoverable">
+            <thead>
+            <tr>
+                <th>Ord</th>
+                <th>Id</th>
+                <th>Electric Amount(KW)</th>
+                <th>Electric Price(VND)</th>
+                <th>Water Amount(M<sup>3</sup>)</th>
+                <th>Water Price(VND)</th>
+                <th>Checked Date</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{range $index, $cost := .}}
+            <tr>
+                <td>#{{addOne $index}}</td>
+                <td>{{$cost.Id}}</td>
+                <td>{{$cost.ElectricAmount}}</td>
+                <td>{{multiplication $cost.ElectricPrice 1000}}</td>
+                <td>{{$cost.WaterAmount}}</td>
+                <td>{{multiplication $cost.WaterPrice 1000}}</td>
+                <td>{{$cost.CheckedDate}}</td>
+                <td>
+                    <button class="w3-btn w3-teal" onclick="updateCost(this);">Modify</button>
+                    <button class="w3-btn w3-red" onclick="deleteCost(this)">Delete</button>
+                </td>
+            </tr>
+            {{end}}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Create Modals -->
+<div class="w3-container">
+    <div id="create-form" class="w3-modal">
+        <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width: 600px;">
+            <!-- head -->
+            <div class="w3-container w3-teal">
+                <h2>Create new cost</h2>
+                <span class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright"
+                      onclick="document.getElementById('create-form').style.display='none'">&times;</span>
+            </div>
+
+            <form class="w3-container" action="/create" method="post">
+                <label class="w3-label">Electric Amount</label>
+                <input class="w3-input" type="number" name="ElectricAmount" value="100">
+                <label class="w3-label">Electric Price</label>
+                <input class="w3-input" type="number" name="ElectricPrice" value="2.5" step="0.01">
+                <label class="w3-label">Water Amount</label>
+                <input class="w3-input" type="number" name="WaterAmount" value="7">
+                <label class="w3-label">Water Price</label>
+                <input class="w3-input" type="numer" name="WaterPrice" value="16.0" step="0.01">
+                <label class="w3-label">Checked Date</label>
+                <input class="w3-input" type="date" name="CheckedDate" value="01/01/2017">
+                <button class="w3-btn w3-teal w3-margin-top w3-margin-bottom w3-right" type="submit">Create</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Edit Modals -->
+<div class="w3-container">
+    <div id="edit-form" class="w3-modal">
+        <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width: 600px;">
+            <!-- head -->
+            <div class="w3-container w3-teal">
+                <h2>Edit cost</h2>
+                <span class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright"
+                      onclick="document.getElementById('edit-form').style.display='none'">&times;</span>
+            </div>
+
+            <form class="w3-container" action="/update" method="post">
+                <input type="hidden" name="Id" id="costIdToUpdate">
+                <label class="w3-label">Electric Amount</label>
+                <input class="w3-input" type="number" name="ElectricAmount" value="100">
+                <label class="w3-label">Electric Price</label>
+                <input class="w3-input" type="number" name="ElectricPrice" value="2.5" step="0.01">
+                <label class="w3-label">Water Amount</label>
+                <input class="w3-input" type="number" name="WaterAmount" value="7">
+                <label class="w3-label">Water Price</label>
+                <input class="w3-input" type="number" name="WaterPrice" value="16.0" step="0.01">
+                <label class="w3-label">Checked Date</label>
+                <input class="w3-input" type="date" name="CheckedDate" value="01/01/2017">
+                <button class="w3-btn w3-teal w3-margin-top w3-margin-bottom w3-right" type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Delete Modals -->
+<div class="w3-container">
+    <div id="delete-form" class="w3-modal">
+        <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width: 600px;">
+            <!-- head -->
+            <div class="w3-container w3-teal">
+                <h2>Are you sure?</h2>
+                <span class="w3-closebtn w3-hover-red w3-container w3-padding-8 w3-display-topright"
+                      onclick="document.getElementById('delete-form').style.display='none'">&times;</span>
+            </div>
+
+            <form class="w3-container" action="/delete" method="post">
+                <input type="hidden" name="Id" id="costIdToDelete">
+                <div class="w3-center">
+                    <button class="w3-btn w3-red w3-margin-top w3-margin-bottom" type="submit">Delete</button>
+                    <button type="button" class="w3-btn w3-teal w3-margin-top w3-margin-bottom"
+                            onclick="document.getElementById('delete-form').style.display='none'">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    var costs = {{.}};
+    console.log(costs);
+
+    function updateCost(e) {
+        var editForm = document.getElementById('edit-form');
+        // display update form
+        editForm.style.display = 'block';
+        // get cost id to update
+        var costId = e.parentNode.parentNode.childNodes[3].innerText;
+        document.getElementById('costIdToUpdate').value = costId;
+    }
+
+    function deleteCost(e) {
+        var deleteForm = document.getElementById('delete-form');
+        deleteForm.style.display = 'block';
+        var costId = e.parentNode.parentNode.childNodes[3].innerText;
+        document.getElementById('costIdToDelete').value = costId;
+    }
+</script>
+</body>
+</html>
