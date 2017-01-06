@@ -8,6 +8,17 @@ This sample aim to practice while I'm learning Go, It use built-ins Go's package
 # Installation
 - Setup environment official here https://golang.org/doc/install
 - Clone and change to `famcost` folder ren run `go get` to install dependencies.
+- Create table ```
+CREATE TABLE cost
+(
+    id INTEGER PRIMARY KEY NOT NULL,
+    electric_amount INTEGER,
+    electric_price INTEGER,
+    water_amount INTEGER,
+    water_price INTEGER,
+    checked_date TEXT
+);
+```
 - Run local `go run *.go`
 
 # Screen shots
