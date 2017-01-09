@@ -21,13 +21,13 @@ CREATE TABLE cost
 `
 - Run local `go run *.go`
 - Docker build `docker build -t famcost .`
-- Docker run `docker run --publish 6666:3333 --name famcost --rm famcost`
+- Docker run `docker run --publish 8898:3333 --name famcost --rm famcost`
 
 # Screen shots
 ![Creating](create.png "create")
 ![Creating](Listing.png "create")
 # TODOs
-- Add simple loggin.
+- Add simple Authenticate.
 - Add simple Rest api.
 - Add test case.
 
