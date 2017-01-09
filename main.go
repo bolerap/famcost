@@ -33,6 +33,7 @@ func main() {
 		panic(err)
 	}
 	// route
+	http.HandleFunc("/", listHandler)
 	http.HandleFunc("/list", listHandler)
 	http.HandleFunc("/create", createHandler)
 	http.HandleFunc("/update", updateHandler)
