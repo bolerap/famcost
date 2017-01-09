@@ -5,7 +5,11 @@ Sample CRUD use Go with sqlite
 This sample aim to practice while I'm learning Go, It use built-ins Go's packages such as `net/http`, `database/sql`, `strconv`, 
 `html/template` and use a third party packge https://github.com/mattn/go-sqlite3
 
-# Installation
+# Basic usage
+`docker run --publish 8898:3333 --name famcost --rm thanhngvpt/famcost`
+
+
+# Advance usage
 - Setup environment official here https://golang.org/doc/install
 - Clone and change to `famcost` folder ren run `go get` to install dependencies.
 - Create table `
