@@ -1,3 +1,3 @@
-FROM golang:1.7.4-onbuild
+FROM golang:onbuild
 MAINTAINER thanhngvpt
 EXPOSE 3333
