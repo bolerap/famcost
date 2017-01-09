@@ -27,7 +27,7 @@ CREATE TABLE cost
 ![Creating](create.png "create")
 ![Creating](Listing.png "create")
 # TODOs
-- Add simple loggin.
+- Add simple Authenticate.
 - Add simple Rest api.
 - Add test case.
 
