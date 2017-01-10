@@ -38,7 +38,7 @@ func listHandler(w http.ResponseWriter, r *http.Request) {
 
 func createHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "POST" {
-		http.Redirect(w, r, "/list", 301)
+		http.Redirect(w, r, "/", 301)
 	}
 	var cost Cost
 	cost.ElectricAmount, _ = strconv.ParseInt(r.FormValue("ElectricAmount"), 10, 64)
@@ -63,12 +63,12 @@ func createHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Execute query error")
 		panic(err)
 	}
-	http.Redirect(w, r, "/list", 301)
+	http.Redirect(w, r, "/", 301)
 }
 
 func updateHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "POST" {
-		http.Redirect(w, r, "/list", 301)
+		http.Redirect(w, r, "/", 301)
 	}
 	var cost Cost
 	cost.Id, _ = strconv.ParseInt(r.FormValue("Id"), 10, 64)
@@ -88,12 +88,12 @@ func updateHandler(w http.ResponseWriter, r *http.Request) {
 	checkInternalServerError(err, w)
 	_, err = res.RowsAffected()
 	checkInternalServerError(err, w)
-	http.Redirect(w, r, "/list", 301)
+	http.Redirect(w, r, "/", 301)
 }
 
 func deleteHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "POST" {
-		http.Redirect(w, r, "/list", 301)
+		http.Redirect(w, r, "/", 301)
 	}
 	var costId, _ = strconv.ParseInt(r.FormValue("Id"), 10, 64)
 	stmt, err := db.Prepare("DELETE FROM cost WHERE id=?")
@@ -102,6 +102,6 @@ func deleteHandler(w http.ResponseWriter, r *http.Request) {
 	checkInternalServerError(err, w)
 	_, err = res.RowsAffected()
 	checkInternalServerError(err, w)
-	http.Redirect(w, r, "/list", 301)
+	http.Redirect(w, r, "/", 301)
 
 }
