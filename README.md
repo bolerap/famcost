@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/thanhngvpt/famcost.svg?branch=master)](https://travis-ci.org/thanhngvpt/famcost)
+
 # famcost
 Sample CRUD use Go with sqlite
 
