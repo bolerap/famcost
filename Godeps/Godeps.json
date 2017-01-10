@@ -1,0 +1,19 @@
+{
+	"ImportPath": "github.com/thanhngvpt/famcost",
+	"GoVersion": "go1.7",
+	"GodepVersion": "v75",
+	"Packages": [
+		"./..."
+	],
+	"Deps": [
+		{
+			"ImportPath": "github.com/mattn/go-sqlite3",
+			"Comment": "v1.2.0-11-g6f2749a",
+			"Rev": "6f2749a3ca9b233ffb8749ef9684f7f4d88cee7a"
+		},
+		{
+			"ImportPath": "golang.org/x/net/context",
+			"Rev": "905989bd20b7c354fd28a61074eed1c8f49ebc89"
+		}
+	]
+}
