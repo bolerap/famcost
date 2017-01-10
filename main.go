@@ -3,6 +3,8 @@ package main
 import (
 	"database/sql"
 	"net/http"
+	"os"
+	"log"
 
 	_ "github.com/mattn/go-sqlite3"
 )
@@ -32,11 +34,15 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	port := os.Getenv("PORT")
+	if port == "" {
+		log.Fatal("$PORT must be set")
+	}
 	// route
 	http.HandleFunc("/", listHandler)
 	http.HandleFunc("/list", listHandler)
 	http.HandleFunc("/create", createHandler)
 	http.HandleFunc("/update", updateHandler)
 	http.HandleFunc("/delete", deleteHandler)
-	http.ListenAndServe(":3333", nil)
+	http.ListenAndServe(":" + port, nil)
 }
