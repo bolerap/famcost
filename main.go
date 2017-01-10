@@ -2,9 +2,9 @@ package main
 
 import (
 	"database/sql"
+	"log"
 	"net/http"
 	"os"
-	"log"
 
 	_ "github.com/mattn/go-sqlite3"
 )
@@ -48,5 +48,5 @@ func main() {
 	http.Handle("/statics/",
 		http.StripPrefix("/statics/", http.FileServer(http.Dir("./statics"))),
 	)
-	http.ListenAndServe(":" + port, nil)
+	http.ListenAndServe(":"+port, nil)
 }
