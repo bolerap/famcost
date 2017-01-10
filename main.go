@@ -34,6 +34,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	os.Setenv("PORT", "8898")
 	port := os.Getenv("PORT")
 	if port == "" {
 		log.Fatal("$PORT must be set")
@@ -44,6 +45,8 @@ func main() {
 	http.HandleFunc("/create", createHandler)
 	http.HandleFunc("/update", updateHandler)
 	http.HandleFunc("/delete", deleteHandler)
-	http.Handle("/statics", http.FileServer(http.Dir("statics")))
+	http.Handle("/statics/",
+		http.StripPrefix("/statics/", http.FileServer(http.Dir("./statics"))),
+	)
 	http.ListenAndServe(":" + port, nil)
 }
