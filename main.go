@@ -44,6 +44,6 @@ func main() {
 	http.HandleFunc("/create", createHandler)
 	http.HandleFunc("/update", updateHandler)
 	http.HandleFunc("/delete", deleteHandler)
-	http.HandleFunc("/statics", http.FileServer(http.Dir("statics")))
+	http.Handle("/statics", http.FileServer(http.Dir("statics")))
 	http.ListenAndServe(":" + port, nil)
 }
