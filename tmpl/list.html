@@ -5,11 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/statics/ionicons/css/w3.css">
     <link rel="stylesheet" href="/statics/ionicons/css/ionicons.min.css">
-    <title>Listing</title>
+    <title>FamCost</title>
     <style>
-        #add-icon:hover {
+        .hoverbtn:hover {
             font-weight: bold;
             opacity: 0.4;
+        }
+
+        a {
+            text-decoration: none;
         }
     </style>
 </head>
@@ -18,11 +22,18 @@
     <div class="w3-card-2 w3-margin-top">
         <header class="w3-container w3-center w3-teal">
             <div class="w3-row">
-                <div class="w3-half"><h3 class="w3-right">Listing Cost</h3></div>
                 <div class="w3-half">
-                    <a href="#" onclick="document.getElementById('create-form').style.display='block'">
-                        <i id="add-icon" class="icon ion-ios-plus-outline w3-xxlarge w3-right"></i>
-                    </a>
+                    <h3 class="w3-right">Listing Cost</h3>
+                </div>
+                <div class="w3-half w3-text-right">
+                    <div class="w3-right">
+                        <a href="#" onclick="document.getElementById('create-form').style.display='block'">
+                            <i class="icon ion-ios-plus-outline w3-xxlarge hoverbtn"></i>
+                        </a>
+                        <a href="/logout">
+                            <i class="icon ion-log-out w3-xxlarge hoverbtn"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </header>
@@ -136,7 +147,8 @@
                 <div class="w3-center">
                     <button class="w3-btn w3-red w3-margin-top w3-margin-bottom" type="submit">Delete</button>
                     <button type="button" class="w3-btn w3-teal w3-margin-top w3-margin-bottom"
-                            onclick="document.getElementById('delete-form').style.display='none'">Cancel</button>
+                            onclick="document.getElementById('delete-form').style.display='none'">Cancel
+                    </button>
                 </div>
             </form>
         </div>
@@ -144,24 +156,21 @@
 </div>
 
 <script>
-    var costs = {{.}};
-    //console.log(costs);
+  function updateCost(e) {
+    var editForm = document.getElementById('edit-form');
+    // display update form
+    editForm.style.display = 'block';
+    // get cost id to update
+    var costId = e.parentNode.parentNode.childNodes[3].innerText;
+    document.getElementById('costIdToUpdate').value = costId;
+  }
 
-    function updateCost(e) {
-        var editForm = document.getElementById('edit-form');
-        // display update form
-        editForm.style.display = 'block';
-        // get cost id to update
-        var costId = e.parentNode.parentNode.childNodes[3].innerText;
-        document.getElementById('costIdToUpdate').value = costId;
-    }
-
-    function deleteCost(e) {
-        var deleteForm = document.getElementById('delete-form');
-        deleteForm.style.display = 'block';
-        var costId = e.parentNode.parentNode.childNodes[3].innerText;
-        document.getElementById('costIdToDelete').value = costId;
-    }
+  function deleteCost(e) {
+    var deleteForm = document.getElementById('delete-form');
+    deleteForm.style.display = 'block';
+    var costId = e.parentNode.parentNode.childNodes[3].innerText;
+    document.getElementById('costIdToDelete').value = costId;
+  }
 </script>
 </body>
 </html>

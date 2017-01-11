@@ -12,16 +12,8 @@ import (
 var (
 	db  *sql.DB
 	err error
+	authenticated = false
 )
-
-type Cost struct {
-	Id             int64   `json:"id"`
-	ElectricAmount int64   `json:"electric_amount"`
-	ElectricPrice  float64 `json:"electric_price"`
-	WaterAmount    int64   `json:"water_amount"`
-	WaterPrice     float64 `json:"water_price"`
-	CheckedDate    string  `json:"checked_date"`
-}
 
 func main() {
 	db, err = sql.Open("sqlite3", "db.sqlite3")
@@ -34,13 +26,16 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	//os.Setenv("PORT", "8898")
+	os.Setenv("PORT", "8898")
 	port := os.Getenv("PORT")
 	if port == "" {
 		log.Fatal("$PORT must be set")
 	}
 	// route
-	http.HandleFunc("/", listHandler)
+	http.HandleFunc("/", indexHandler)
+	http.HandleFunc("/login", loginHandler)
+	http.HandleFunc("/logout", logoutHandler)
+	http.HandleFunc("/register", registerHandler)
 	http.HandleFunc("/list", listHandler)
 	http.HandleFunc("/create", createHandler)
 	http.HandleFunc("/update", updateHandler)
