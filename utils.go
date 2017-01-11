@@ -9,3 +9,8 @@ func checkInternalServerError(err error, w http.ResponseWriter) {
 	}
 }
 
+func isAuthenticated(w http.ResponseWriter, r *http.Request) {
+	if !authenticated {
+		http.Redirect(w, r, "/login", 301)
+	}
+}

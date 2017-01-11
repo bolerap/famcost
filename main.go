@@ -12,6 +12,7 @@ import (
 var (
 	db  *sql.DB
 	err error
+	authenticated = false
 )
 
 func main() {
@@ -25,14 +26,15 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	//os.Setenv("PORT", "8898")
+	os.Setenv("PORT", "8898")
 	port := os.Getenv("PORT")
 	if port == "" {
 		log.Fatal("$PORT must be set")
 	}
 	// route
-	http.HandleFunc("/", loginHandler)
+	http.HandleFunc("/", indexHandler)
 	http.HandleFunc("/login", loginHandler)
+	http.HandleFunc("/logout", logoutHandler)
 	http.HandleFunc("/register", registerHandler)
 	http.HandleFunc("/list", listHandler)
 	http.HandleFunc("/create", createHandler)

@@ -58,11 +58,18 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		http.Redirect(w, r, "/login", 301)
 	}
+	authenticated = true
 	http.Redirect(w, r, "/list", 301)
 
 }
 
+func logoutHandler(w http.ResponseWriter, r *http.Request) {
+	authenticated = false
+	isAuthenticated(w, r)
+}
+
 func listHandler(w http.ResponseWriter, r *http.Request) {
+	isAuthenticated(w, r)
 	if r.Method != "GET" {
 		http.Error(w, "Method not allowed", http.StatusBadRequest)
 	}
@@ -92,6 +99,7 @@ func listHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func createHandler(w http.ResponseWriter, r *http.Request) {
+	isAuthenticated(w, r)
 	if r.Method != "POST" {
 		http.Redirect(w, r, "/", 301)
 	}
@@ -122,6 +130,7 @@ func createHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func updateHandler(w http.ResponseWriter, r *http.Request) {
+	isAuthenticated(w, r)
 	if r.Method != "POST" {
 		http.Redirect(w, r, "/", 301)
 	}
@@ -147,6 +156,7 @@ func updateHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func deleteHandler(w http.ResponseWriter, r *http.Request) {
+	isAuthenticated(w, r)
 	if r.Method != "POST" {
 		http.Redirect(w, r, "/", 301)
 	}
@@ -159,4 +169,9 @@ func deleteHandler(w http.ResponseWriter, r *http.Request) {
 	checkInternalServerError(err, w)
 	http.Redirect(w, r, "/", 301)
 
+}
+
+func indexHandler(w http.ResponseWriter, r *http.Request) {
+	isAuthenticated(w, r)
+	http.Redirect(w, r, "/list", 301)
 }
