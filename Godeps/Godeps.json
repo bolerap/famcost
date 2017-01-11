@@ -2,9 +2,6 @@
 	"ImportPath": "github.com/thanhngvpt/famcost",
 	"GoVersion": "go1.7",
 	"GodepVersion": "v75",
-	"Packages": [
-		"./..."
-	],
 	"Deps": [
 		{
 			"ImportPath": "github.com/mattn/go-sqlite3",

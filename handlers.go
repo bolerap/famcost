@@ -3,10 +3,10 @@ package main
 import (
 	"database/sql"
 	"fmt"
-	"golang.org/x/crypto/bcrypt"
 	"html/template"
 	"net/http"
 	"strconv"
+	"golang.org/x/crypto/bcrypt"
 )
 
 func registerHandler(w http.ResponseWriter, r *http.Request) {
