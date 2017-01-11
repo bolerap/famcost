@@ -9,8 +9,3 @@ func checkInternalServerError(err error, w http.ResponseWriter) {
 	}
 }
 
-func checkConflict(err error, w http.ResponseWriter) {
-	if err != nil {
-		http.Error(w, "The user was existed", http.StatusConflict)
-	}
-}
