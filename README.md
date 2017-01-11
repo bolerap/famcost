@@ -30,8 +30,8 @@ CREATE TABLE cost
 - Docker run `docker run --publish 8898:3333 --name famcost --rm famcost`
 
 # Screen shots
-![Creating](create.png "create")
-![Creating](Listing.png "create")
+![Creating](statics/images/create.png "create")
+![Creating](statics/images/list.png "create")
 # TODOs
 - Add simple Authenticate.
 - Add simple Rest api.
