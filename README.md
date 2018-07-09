@@ -32,8 +32,4 @@ CREATE TABLE cost
 # Screen shots
 ![Creating](statics/images/create.png "create")
 ![Creating](statics/images/list.png "create")
-# TODOs
-- Add simple Authenticate.
-- Add simple Rest api.
-- Add test case.
 
